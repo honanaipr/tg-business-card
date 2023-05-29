@@ -1,0 +1,15 @@
+[tool.poetry]
+name = "business-card"
+version = "0.1.0"
+description = ""
+authors = ["scary <scary@scary.com>"]
+readme = "README.md"
+packages = [{include = "business_card"}]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
