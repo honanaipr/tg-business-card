@@ -28,6 +28,8 @@ reg.register_start_handler(MainSG.main)
 async def cancel_dialog(message: Message, dialog_manager: ManagerImpl):
     if len(dialog_manager.current_stack().intents) > 0:
         await dialog_manager.done()
+    if len(dialog_manager.current_stack().intents) == 0:
+        await dialog_manager.start(MainSG.main)
 
 @dp.message(Command("help"))
 async def cancel_dialog(message: Message, dialog_manager: DialogManager):
