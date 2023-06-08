@@ -8,8 +8,8 @@ packages = [{include = "business_card"}]
 
 [tool.poetry.dependencies]
 python = "^3.11"
-aiogram = "^2.25.1"
 loguru = "^0.7.0"
+aiogram = "3.0.0b7"
 
 
 [build-system]
