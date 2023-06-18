@@ -5,7 +5,7 @@ from aiogram_dialog.widgets.media import StaticMedia
 
 from aiogram.types import ContentType
 
-from business_card.states import MainSG, SecondarySG
+from business_card.states import MainSG, TranslateSG, SecondarySG
 from business_card.utils import get_placehold_image_url
 
 secondary_diolog = Dialog(
