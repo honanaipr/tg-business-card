@@ -14,3 +14,6 @@ class SecondarySG(StatesGroup):
     first = State()
     seccond = State()
     third = State()
+
+class TgServiceSG(StatesGroup):
+    main = State()
