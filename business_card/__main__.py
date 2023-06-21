@@ -1,7 +1,7 @@
 from business_card.diologs import main_diolog
 from business_card.diologs import translate_dialog
 from business_card.states import MainSG
-from business_card.configuration import configure
+from business_card.ui import configure
 
 import asyncio
 from aiogram.filters import CommandObject

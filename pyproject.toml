@@ -13,6 +13,8 @@ aiogram-dialog = "2.0.0b18"
 aiogram = "3.0.0b7"
 redis = "^4.5.5"
 deep-translator = "^1.11.1"
+environ-config = "^23.2.0"
+python-dotenv = "^1.0.0"
 
 
 [build-system]

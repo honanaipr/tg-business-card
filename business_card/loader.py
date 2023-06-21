@@ -1,8 +1,7 @@
 from aiogram.fsm.storage.redis import RedisStorage, DefaultKeyBuilder
 from aiogram import Bot, Dispatcher
+from business_card.config import config
 
-API_TOKEN = '6244180609:AAGl8bZGQ3fG_otyQONWvu-c6ukKvILJohY'
-
-storage = RedisStorage.from_url("redis://localhost:6379/db", key_builder=DefaultKeyBuilder(with_destiny=True))
-bot = Bot(token=API_TOKEN)
+storage = RedisStorage.from_url(config.redis.url, key_builder=DefaultKeyBuilder(with_destiny=True))
+bot = Bot(token=config.bot.token)
 dp = Dispatcher(storage=storage)

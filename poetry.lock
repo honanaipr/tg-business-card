@@ -365,6 +365,26 @@ docx = ["docx2txt (>=0.8,<0.9)"]
 pdf = ["pypdf (>=3.3.0,<4.0.0)"]
 
 [[package]]
+name = "environ-config"
+version = "23.2.0"
+description = "Boilerplate-free configuration with env variables."
+optional = false
+python-versions = ">=3.7"
+files = [
+    {file = "environ_config-23.2.0-py3-none-any.whl", hash = "sha256:20a60f90a0a9e80d7d5ed92060a8fbb9b7b016ba34bda85361ec376340013be9"},
+    {file = "environ_config-23.2.0.tar.gz", hash = "sha256:e83fa15efbd7ab7130268c33992d9d42747232315d05586e5276c96ee89020f9"},
+]
+
+[package.dependencies]
+attrs = ">=17.4.0"
+
+[package.extras]
+aws = ["boto3"]
+dev = ["environ-config[docs,tests]"]
+docs = ["environ-config[aws]", "furo", "myst-parser", "sphinx", "sphinx-notfound-page"]
+tests = ["coverage[toml]", "moto", "pytest"]
+
+[[package]]
 name = "frozenlist"
 version = "1.3.3"
 description = "A list-like structure which implements collections.abc.MutableSequence"
@@ -699,6 +719,20 @@ dotenv = ["python-dotenv (>=0.10.4)"]
 email = ["email-validator (>=1.0.3)"]
 
 [[package]]
+name = "python-dotenv"
+version = "1.0.0"
+description = "Read key-value pairs from a .env file and set them as environment variables"
+optional = false
+python-versions = ">=3.8"
+files = [
+    {file = "python-dotenv-1.0.0.tar.gz", hash = "sha256:a8df96034aae6d2d50a4ebe8216326c61c3eb64836776504fcca410e5937a3ba"},
+    {file = "python_dotenv-1.0.0-py3-none-any.whl", hash = "sha256:f5971a9226b701070a4bf2c38c89e5a3f0d64de8debda981d1db98583009122a"},
+]
+
+[package.extras]
+cli = ["click (>=5.0)"]
+
+[[package]]
 name = "redis"
 version = "4.5.5"
 description = "Python client for Redis database and key-value store"
@@ -880,4 +914,4 @@ multidict = ">=4.0"
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.11"
-content-hash = "0f1d5202b41a568f607a459cd103967a91254ff2973ebe26e41bf98a2cdf4581"
+content-hash = "7c8ecb5f2018a5ecd601eea993136103523a67d1ce354af339189e19b83b64dc"
