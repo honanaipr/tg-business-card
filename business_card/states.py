@@ -12,7 +12,7 @@ class TranslateSG(StatesGroup):
 
 class SecondarySG(StatesGroup):
     first = State()
-    seccond = State()
+    second = State()
     third = State()
 
 class TgServiceSG(StatesGroup):

@@ -21,9 +21,9 @@ def get_translations(text: str) -> dict:
 
 
 
-translation_roouter = Router()
+translation_router = Router()
 
-@translation_roouter.inline_query()
+@translation_router.inline_query()
 async def inline_echo(inline_query: InlineQuery):
     if not inline_query.query:
         return
@@ -43,7 +43,7 @@ async def inline_echo(inline_query: InlineQuery):
     # button = InlineQueryResultsButton(text="~~Регистрация~~", start_parameter="_")
     await inline_query.answer(results=[item], cache_time=0)
 
-@translation_roouter.chosen_inline_result()
+@translation_router.chosen_inline_result()
 async def chosen_inline_result_handler(r: ChosenInlineResult):
     if not r.query:
         return
