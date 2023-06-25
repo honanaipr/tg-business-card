@@ -10,7 +10,7 @@ mv .env.example .env
 ```
 replace **<BOT_TOKEN>** with your bot token in **.env**
 
-## Install dependences
+## Install dependencies
 ```sh
 poetry install
 ```
@@ -38,7 +38,7 @@ wget -qO- https://get.docker.com/ | sh
 pip install -U pip
 ```
 
-### Insall poetry
+### Install poetry
 ```sh
 pip install poetry
 ```

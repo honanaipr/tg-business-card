@@ -45,7 +45,7 @@ async def start_command(message: Message, dialog_manager: DialogManager):
     await dialog_manager.start(MainSG.main, mode=StartMode.RESET_STACK)
 
 @dp.message(Command("cancel"))
-async def cancel_dialog(message: Message, dialog_manager: ManagerImpl):
+async def cancel_dialog(message: Message, dialog_manager: DialogManager):
     if len(dialog_manager.current_stack().intents) > 0:
         await dialog_manager.done()
     if len(dialog_manager.current_stack().intents) == 0:
