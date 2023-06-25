@@ -19,6 +19,10 @@ poetry install
 ```sh
 poetry run python -m business_card
 ```
+or
+```sh
+. start
+```
 
 ## Build and run with Docker
 ```sh
