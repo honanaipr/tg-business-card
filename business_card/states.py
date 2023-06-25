@@ -2,6 +2,7 @@ from aiogram.fsm.state import State, StatesGroup
 
 class MainSG(StatesGroup):
     main = State()
+    main_admin = State()
     help = State()
     settings = State()
     services = State()

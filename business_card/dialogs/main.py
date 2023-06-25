@@ -7,9 +7,16 @@ from aiogram.types import ContentType
 
 from business_card.states import MainSG, TranslateSG
 from business_card.utils import get_placeholder_image_url
-from business_card.database import users, Query
+from business_card.db import users, Query
 
-main_diolog = Dialog(
+async def getter(event_chat, **kwargs):
+    _user = Query()
+    is_admin = users.contains((_user.is_admin == True) & (_user.id  == event_chat.id))
+    return {
+        "is_admin": is_admin,
+    }
+
+main_dialog = Dialog(
     Window(
         StaticMedia(url=Const(get_placeholder_image_url(text="Main window")), type=ContentType.PHOTO),
         Const("is admin", when="is_admin"),

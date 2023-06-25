@@ -15,7 +15,10 @@ redis = "^4.5.5"
 deep-translator = "^1.11.1"
 environ-config = "^23.2.0"
 python-dotenv = "^1.0.0"
+tinydb = "^4.8.0"
 
+[tool.poetry.group.dev.dependencies]
+mypy = "*"
 
 [build-system]
 requires = ["poetry-core"]

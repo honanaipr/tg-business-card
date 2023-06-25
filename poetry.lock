@@ -783,6 +783,17 @@ files = [
 ]
 
 [[package]]
+name = "tinydb"
+version = "4.8.0"
+description = "TinyDB is a tiny, document oriented database optimized for your happiness :)"
+optional = false
+python-versions = ">=3.7,<4.0"
+files = [
+    {file = "tinydb-4.8.0-py3-none-any.whl", hash = "sha256:30c06d12383d7c332e404ca6a6103fb2b32cbf25712689648c39d9a6bd34bd3d"},
+    {file = "tinydb-4.8.0.tar.gz", hash = "sha256:6dd686a9c5a75dfa9280088fd79a419aefe19cd7f4bd85eba203540ef856d564"},
+]
+
+[[package]]
 name = "typing-extensions"
 version = "4.6.3"
 description = "Backported and Experimental Type Hints for Python 3.7+"
@@ -914,4 +925,4 @@ multidict = ">=4.0"
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.11"
-content-hash = "7c8ecb5f2018a5ecd601eea993136103523a67d1ce354af339189e19b83b64dc"
+content-hash = "179cb7630e9aa786bb951fc9f18cb1e8524051272bb236fffadce677236b4ddf"
