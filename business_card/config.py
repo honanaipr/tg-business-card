@@ -3,10 +3,10 @@ import environ
 from attr.validators import matches_re
 from traceback import print_exception
 
-load_dotenv(override=True)
+load_dotenv()
 
 TOKEN_RE = "[0-9]{8,10}:[a-zA-Z0-9_-]{35}"
-REDIS_URL_RE = ".*"
+REDIS_URL_RE = "redis://.+:[0-9]+/.+"
 @environ.config(prefix="")
 class AppConfig():
     @environ.config(prefix="BOT")

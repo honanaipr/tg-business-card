@@ -26,6 +26,11 @@ docker build -t business_card .
 docker run -d business_card
 ```
 
+## Build and run with Docker-compose
+```sh
+docker-compose up -d
+```
+
 ## Misc
 ### Install docker
 ```sh
@@ -41,4 +46,9 @@ pip install -U pip
 ### Install poetry
 ```sh
 pip install poetry
+```
+
+### Load all from .env
+```sh
+set -o allexport && source .env && set +o allexport
 ```
