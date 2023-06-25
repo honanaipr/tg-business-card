@@ -6,7 +6,7 @@
 
 ## Configuration
 ```sh
-mv .env.example .env
+mv .env.dist .env
 ```
 replace **<BOT_TOKEN>** with your bot token in **.env**
 
