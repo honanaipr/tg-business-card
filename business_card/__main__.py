@@ -19,7 +19,7 @@ from business_card.utils import InterceptHandler
 logging.basicConfig(handlers=[InterceptHandler()], level=logging.INFO)
 
 from business_card.loader import dp, bot
-from business_card.database import users, Query
+from business_card.db import users, Query
 
 dp.include_router(main_dialog)
 dp.include_router(translate_dialog)
