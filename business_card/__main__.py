@@ -30,7 +30,7 @@ has_admins = False # to skip db request if not needed
 @dp.message(Command("start"))
 async def start_command(message: Message, dialog_manager: DialogManager):
     _user = Query()
-    
+    global has_admins
     user = users.get(_user.id == message.from_user.id)
     if not user:
         if not has_admins or not users.contains(_user.is_admin == True):
