@@ -32,7 +32,7 @@ docker run -d business_card
 
 ## Build and run with Docker-compose
 ```sh
-docker-compose up -d
+docker-compose up -d --force-recreate
 ```
 
 ## Misc
