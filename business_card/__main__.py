@@ -1,5 +1,4 @@
-from business_card.dialogs import main_dialog
-from business_card.dialogs import translate_dialog
+from business_card.dialogs import index_dialog, admin_dialog, translate_dialog
 from business_card.states import MainSG
 from business_card.ui import configure
 
@@ -21,7 +20,7 @@ logging.basicConfig(handlers=[InterceptHandler()], level=logging.INFO)
 from business_card.loader import dp, bot
 from business_card.db import users, Query
 
-dp.include_router(main_dialog)
+dp.include_router(index_dialog)
 dp.include_router(translate_dialog)
 setup_dialogs(dp)
 
