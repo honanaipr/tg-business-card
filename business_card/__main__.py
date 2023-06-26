@@ -37,11 +37,11 @@ async def start_command(message: Message, dialog_manager: DialogManager):
         if not has_admins or not users.contains(_user.is_admin == True):
             #have no users yet
             has_admins = True
-            user = {"is_admin": True, "id": message.from_user.id}
+            user = {"is_admin": True, "id": message.from_user.id, 'name': message.from_user.full_name}
             users.insert(user)
             await message.answer("You are first user of this bot. Make you an admin!!!")
         else:
-            user = {"is_admin": False, "id": message.from_user.id}
+            user = {"is_admin": False, "id": message.from_user.id, 'name': message.from_user.full_name}
             users.insert(user)
     await dialog_manager.start(MainSG.main, mode=StartMode.RESET_STACK)
 
