@@ -24,7 +24,9 @@ dp.include_router(index_dialog)
 dp.include_router(translate_dialog)
 setup_dialogs(dp)
 
-has_admins = False # to skip db request if not needed
+_user = Query()
+has_admins = users.contains(_user.is_admin == True) # to skip db request if not needed
+del _user
 
 @dp.message(Command("start"))
 async def start_command(message: Message, dialog_manager: DialogManager):
