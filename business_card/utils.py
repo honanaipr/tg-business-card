@@ -11,3 +11,24 @@ class InterceptHandler(logging.Handler):
     def emit(self, record: logging.LogRecord) -> None:
         logger_opt = logger.opt(depth=6, exception=record.exc_info)
         logger_opt.log(record.levelname, record.getMessage())
+        
+def is_admin(id: int) -> bool:
+    """
+    check is user is admin by it's id
+    """
+    _user: Query = Query()
+    is_admin : bool = users.contains((_user.is_admin == True) & (_user.id  == id))
+    return is_admin
+
+def add_admin(id: int) -> None:
+    """
+    add admin by it's id
+    """
+    _user: Query = Query()
+    users.upsert({'is_admin': True, 'id': id}, _user.id == id)
+    
+def get_admins() -> list[dict]:
+    """
+    get all users
+    """
+    return users.all()
