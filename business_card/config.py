@@ -14,6 +14,7 @@ PORT_RE = "[0-9]+"
 vault = environ.secrets.VaultEnvSecrets(vault_prefix="BOT")
 @environ.config(prefix="")
 class AppConfig():
+    debug = environ.bool_var(help="Redis url", default=False)
     @environ.config(prefix="BOT")
     class BotConfig():
         token = vault.secret(help="Telegram bot's token")
