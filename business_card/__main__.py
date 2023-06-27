@@ -1,27 +1,27 @@
-from business_card.dialogs import index_dialog, admin_dialog, translate_dialog
-from business_card.states import MainSG
-from business_card.ui import configure
-
 import asyncio
-from aiogram.filters import CommandObject
+import logging
 
 from aiogram import F
-from aiogram.filters import Command
+from aiogram.filters import Command, CommandObject
 from aiogram.types import Message
-
-from aiogram_dialog import DialogManager, setup_dialogs, StartMode
+from aiogram_dialog import DialogManager, StartMode, setup_dialogs
 from aiogram_dialog.manager.manager import ManagerImpl
-from business_card.utils import get_placeholder_image_url
 
-import logging
-from business_card.utils import InterceptHandler
+from business_card.db import Query, users
+from business_card.dialogs import admin_dialog, index_dialog, translate_dialog
+from business_card.loader import bot, dp
+from business_card.routers.admin import admin_router
+from business_card.states import MainSG
+from business_card.ui import configure
+from business_card.utils import (InterceptHandler, get_placeholder_image_url,
+                                 is_admin)
+
 logging.basicConfig(handlers=[InterceptHandler()], level=logging.INFO)
 
-from business_card.loader import dp, bot
-from business_card.db import users, Query
-
+dp.include_router(admin_router)
 dp.include_router(index_dialog)
 dp.include_router(translate_dialog)
+dp.include_router(admin_dialog)
 setup_dialogs(dp)
 
 _user = Query()
@@ -50,7 +50,7 @@ async def cancel_dialog(message: Message, dialog_manager: DialogManager):
     if len(dialog_manager.current_stack().intents) > 0:
         await dialog_manager.done()
     if len(dialog_manager.current_stack().intents) == 0:
-        await dialog_manager.start(MainSG.main)
+        await dialog_manager.start(MainSG.main, mode=StartMode.RESET_STACK)
 
 @dp.message(Command("args"))
 async def get_args_handler(message: Message, command: CommandObject):

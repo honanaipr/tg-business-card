@@ -3,6 +3,7 @@ from aiogram_dialog import Dialog
 from urllib.parse import quote
 from loguru import logger
 import logging
+from business_card.db import Query, users
 
 def get_placeholder_image_url(text=None, size=(600,200), font="playfair-display", format="jpg"):
     return f"https://placehold.co/{size[0]}x{size[1]}.{format}?text={quote(text)}&font={font}"
