@@ -19,16 +19,16 @@ repos:
 
 - repo: local
   hooks:
-  - id: mypy
-    name: mypy
-    entry: mypy
+  - id: black
+    name: black
+    entry: black
     language: system
     require_serial: true
     types_or: [python, pyi]
 
-  - id: black
-    name: black
-    entry: black
+  - id: mypy
+    name: mypy
+    entry: mypy
     language: system
     require_serial: true
     types_or: [python, pyi]
