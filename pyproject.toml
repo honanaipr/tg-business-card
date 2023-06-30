@@ -64,4 +64,5 @@ convention = "google"
 [tool.mypy]
 plugins = [
     "tinydb.mypy_plugin",
+    "pydantic.mypy",
 ]

@@ -24,8 +24,10 @@ admin_router = Router()
 
 @admin_router.message(Command("get_users"))
 async def command_start_handler(message: Message, command: CommandObject):
+    if not message.from_user:
+        return
     if not utils.is_admin(message.from_user.id):
-        logger.warning("Someone non admin try to use " + message.text)
+        logger.warning("Someone non admin try to use " + (message.text or ""))
         return
     if not command.args:
         answer = "\n".join(
@@ -48,6 +50,8 @@ async def command_add_admin_handler(
     dialog_manager: DialogManager,
     state: FSMContext,
 ):
+    if not message.from_user:
+        return
     if not utils.is_admin(message.from_user.id):
         logger.warning("Someone non admin try to user ", message.text)
         return

@@ -1,5 +1,5 @@
 from aiogram import Bot, Dispatcher
-from aiogram.fsm.storage.redis import DefaultKeyBuilder, RedisStorage
+from aiogram.fsm.storage.base import BaseStorage
 from loguru import logger
 
 from business_card.config import config
@@ -8,12 +8,13 @@ from business_card.config import config
 #     bot.server = TELEGRAM_TEST
 # TODO test server
 
+storage: BaseStorage
 if config.redis.host and config.redis.port:
     from aiogram.fsm.storage.redis import DefaultKeyBuilder, RedisStorage
+    from redis.asyncio import Redis
 
     storage = RedisStorage(
-        config.redis.host,
-        config.redis.port,
+        Redis(host=config.redis.host, port=config.redis.port),
         key_builder=DefaultKeyBuilder(with_destiny=True),
     )
     logger.info(f"redis host: {config.redis.host}, redis port: {config.redis.port}")

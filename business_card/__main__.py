@@ -33,33 +33,36 @@ del _user
 async def start_command(message: Message, dialog_manager: DialogManager):
     _user = Query()
     global has_admins
+    if not message.from_user:
+        return
     user = users.get(_user.id == message.from_user.id)
     if not user:
         if not has_admins or not users.contains(_user.is_admin == True):
             # have no users yet
             has_admins = True
-            user = {
+            user = {  # type: ignore
                 "is_admin": True,
                 "id": message.from_user.id,
                 "name": message.from_user.full_name,
             }
-            users.insert(user)
+            users.insert(user)  # type: ignore
             await message.answer("You are first user of this bot. Make you an admin!!!")
         else:
-            user = {
+            user = {  # type: ignore
                 "is_admin": False,
                 "id": message.from_user.id,
                 "name": message.from_user.full_name,
             }
-            users.insert(user)
+            users.insert(user)  # type: ignore
     await dialog_manager.start(MainSG.main, mode=StartMode.RESET_STACK)
 
 
 @dp.message(Command("cancel"))
 async def cancel_dialog(message: Message, dialog_manager: DialogManager):
-    if len(dialog_manager.current_stack().intents) > 0:
+    stack = dialog_manager.current_stack()
+    if stack and len(stack.intents) > 0:
         await dialog_manager.done()
-    if len(dialog_manager.current_stack().intents) == 0:
+    else:
         await dialog_manager.start(MainSG.main, mode=StartMode.RESET_STACK)
 
 

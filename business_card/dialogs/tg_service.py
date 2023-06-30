@@ -8,7 +8,7 @@ from loguru import logger
 from business_card.states import TgServiceSG
 from business_card.utils import get_placeholder_image_url
 
-tg_service_dialog = Dialog(
+tg_service_dialog = Dialog(  # type: ignore
     Window(
         StaticMedia(
             url=Const(get_placeholder_image_url(text="Translate service")),

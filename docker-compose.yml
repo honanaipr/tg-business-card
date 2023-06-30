@@ -1,20 +1,21 @@
-version: "3"
+---
+version: '3'
 
 services:
-  business_card:
-    build:
-      context: .
-      dockerfile: Dockerfile
-    restart: always
-    env_file: .env
-    depends_on:
-      - redis
-    environment:
-      - REDIS_URL=redis://redis:6379/db
+    business_card:
+        build:
+            context: .
+            dockerfile: Dockerfile
+        restart: always
+        env_file: .env
+        depends_on:
+            - redis
+        environment:
+            - REDIS_URL=redis://redis:6379/db
 
-  redis:
-    image: redis:latest
-    restart: always
-    command: redis-server
-    environment:
-    - ALLOW_EMPTY_PASSWORD=yes
+    redis:
+        image: redis:latest
+        restart: always
+        command: redis-server
+        environment:
+            - ALLOW_EMPTY_PASSWORD=yes

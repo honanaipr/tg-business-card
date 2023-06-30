@@ -6,7 +6,7 @@ from aiogram.types import BotCommand, BotCommandScopeDefault
 
 BOT_DESCRIPTION = "This bot can just fuck you🖕🏿\n" "If you want some fuck press /start"
 
-BOT_COMANDS = [
+BOT_COMMANDS = [
     BotCommand(command="start", description="Начало работы"),
     BotCommand(command="help", description="Помощь"),
     BotCommand(command="cancel", description="Сбросить"),
@@ -33,7 +33,7 @@ class SetMyDescription(TelegramMethod[bool]):
 
 
 async def set_commands(bot: Bot):
-    commands = BOT_COMANDS
+    commands = BOT_COMMANDS
     await bot.set_my_commands(commands, BotCommandScopeDefault())
 
 
