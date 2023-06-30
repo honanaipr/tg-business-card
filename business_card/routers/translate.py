@@ -11,7 +11,7 @@ from aiogram.types import (
     InputTextMessageContent,
     Message,
 )
-from deep_translator import GoogleTranslator
+from deep_translator import GoogleTranslator  # type: ignore
 from loguru import logger
 
 from business_card.loader import bot
@@ -55,7 +55,7 @@ async def inline_echo(inline_query: InlineQuery):
 async def chosen_inline_result_handler(r: ChosenInlineResult):
     if not r.query:
         return
-    origin = f"{r.query}"
+    origin = f"{r.query}"  # noqa F841
     translations = get_translations(r.query)
     ru_trans = f"ru:\n{r.query}"
     tg_trans = f"tg:\n{translations['tg']}"

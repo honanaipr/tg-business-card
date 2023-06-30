@@ -1,3 +1,5 @@
+from typing import Any
+
 from aiogram.types import ContentType
 from aiogram_dialog import Dialog, DialogManager, StartMode, Window
 from aiogram_dialog.widgets.kbd import Button, Group, Row, Start, SwitchTo
@@ -10,11 +12,13 @@ from business_card.states import MainSG, TranslateSG
 from business_card.utils import get_placeholder_image_url, is_admin
 
 
-async def main_getter(dialog_manager: DialogManager, **kwargs):
+async def main_getter(dialog_manager: DialogManager, **kwargs: Any) -> dict:
+    if not dialog_manager.event.from_user:
+        raise AttributeError
     return {"is_admin": is_admin(dialog_manager.event.from_user.id)}
 
 
-index_dialog = Dialog(
+index_dialog = Dialog(  # type: ignore
     Window(
         StaticMedia(
             url=Const(get_placeholder_image_url(text="Main window")),

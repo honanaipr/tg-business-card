@@ -1,6 +1,6 @@
-from aiogram.types import ContentType
-from aiogram_dialog import Dialog, Window
-from aiogram_dialog.widgets.kbd import Cancel, Row, SwitchTo, Url
+from aiogram.types import CallbackQuery, ContentType
+from aiogram_dialog import Dialog, DialogManager, Window
+from aiogram_dialog.widgets.kbd import Button, Cancel, Row, SwitchTo, Url
 from aiogram_dialog.widgets.media import StaticMedia
 from aiogram_dialog.widgets.text import Const
 from loguru import logger
@@ -9,11 +9,11 @@ from business_card.states import TranslateSG
 from business_card.utils import get_placeholder_image_url
 
 
-async def save(event, source, manager):
+async def save(event: CallbackQuery, source: Button, manager: DialogManager):
     logger.info("Saved")
 
 
-translate_dialog = Dialog(
+translate_dialog = Dialog(  # type: ignore
     Window(
         StaticMedia(
             url=Const(get_placeholder_image_url(text="Translate service")),

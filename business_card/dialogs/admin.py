@@ -1,5 +1,5 @@
 from aiogram.fsm.state import State, StatesGroup
-from aiogram.types import ContentType, Message
+from aiogram.types import CallbackQuery, ContentType, Message
 from aiogram_dialog import (
     Dialog,
     DialogManager,
@@ -37,20 +37,26 @@ class AdminSG(StatesGroup):
 async def name_handler(
     message: Message, message_input: MessageInput, manager: DialogManager
 ):
-    user = message.forward_from.id if message.forward_from else message.from_user
-    manager.dialog_data["user_id"] = user.id
-    manager.dialog_data["user_name"] = user.full_name
-    await manager.switch_to(AdminSG.confirm_add_admin)
+    user = message.forward_from if message.forward_from else message.from_user
+    if not user:
+        return
+    try:
+        manager.dialog_data["user_id"] = user.id
+        manager.dialog_data["user_name"] = user.full_name
+    finally:
+        await manager.switch_to(AdminSG.confirm_add_admin)
 
 
-async def on_add_admin(c, button, manager: DialogManager):
+async def on_add_admin(c: CallbackQuery, button: Button, manager: DialogManager):
     add_admin(manager.dialog_data["user_id"])
     manager.show_mode = ShowMode.EDIT
+    if not c.message:
+        return
     await c.message.delete()
     await c.message.answer("Администратор добавлен")
 
 
-admin_dialog = Dialog(
+admin_dialog = Dialog(  # type: ignore
     Window(
         StaticMedia(
             url=Const(get_placeholder_image_url(text="Admin panel")),

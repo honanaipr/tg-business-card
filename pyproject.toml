@@ -18,8 +18,50 @@ python-dotenv = "^1.0.0"
 tinydb = "^4.8.0"
 
 [tool.poetry.group.dev.dependencies]
+ruff = "*"
 mypy = "*"
+pre-commit = "^3.3.3"
+black = "^23.3.0"
 
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
+
+[tool.ruff]
+ignore = [
+    "F401", # unused-import
+    "E501", # line-too-long
+    "E712", # true-false-comparison
+    "ANN101", # missing-type-self
+    ]
+select = [
+    "E", # Pyflakes
+    "F", # pycodestyle
+    "W", # pycodestyle
+    "C90", # mccabe
+    "I", # isort
+    "N",
+    "UP",
+    "ANN"
+]
+
+[tool.ruff.flake8-type-checking]
+strict = true
+
+[tool.ruff.flake8-annotations]
+mypy-init-return = true
+# Whether to allow the omission of a return type hint for __init__ if at least one argument is annotated.
+allow-star-arg-any = true
+# Whether to suppress ANN401 for dynamically typed *args and **kwargs arguments.
+suppress-none-returning = true
+# Whether to suppress ANN200-level violations for functions that meet either of the following criteria:
+# - Contain no return statement.
+# - Explicit return statement(s) all return None (explicitly or implicitly).
+
+[tool.ruff.pydocstyle]
+convention = "google"
+
+[tool.mypy]
+plugins = [
+    "tinydb.mypy_plugin",
+]

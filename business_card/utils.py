@@ -9,8 +9,11 @@ from business_card.db import Query, users
 
 
 def get_placeholder_image_url(
-    text=None, size=(600, 200), font="playfair-display", format="jpg"
-):
+    text: str = "None",
+    size: tuple[int, int] = (600, 200),
+    font: str | None = "playfair-display",
+    format: str | None = "jpg",
+) -> str:
     return f"https://placehold.co/{size[0]}x{size[1]}.{format}?text={quote(text)}&font={font}"
 
 
@@ -37,7 +40,7 @@ def add_admin(id: int) -> None:
     users.upsert({"is_admin": True, "id": id}, _user.id == id)
 
 
-def get_admins() -> list[dict]:
+def get_admins():  # noqa ANN201
     """
     get all users
     """
