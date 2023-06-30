@@ -32,4 +32,3 @@ except Exception as e:
     print_exception(e)
     print("\n",environ.generate_help(AppConfig), "\n")
     quit()
-

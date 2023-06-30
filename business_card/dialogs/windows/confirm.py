@@ -26,4 +26,3 @@ class ConfirmWindow(Window):
             ),
             state=state,
         )
-    

@@ -162,5 +162,5 @@ cython_debug/
 # vscode
 .vscode
 
-# custom 
+# custom
 db.json

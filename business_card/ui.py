@@ -47,8 +47,8 @@ async def set_commands(bot: Bot):
 
 async def set_description(bot: Bot):
     await bot(SetMyDescription(description=BOT_DESCRIPTION))
-    
-    
+
+
 async def configure(bot: Bot):
     await set_commands(bot)
     await set_description(bot)

@@ -65,5 +65,3 @@ async def chosen_inline_result_handler(r: ChosenInlineResult):
 #         ]
 #     )
 #     await m.answer("OK", reply_markup=markup)
-
-    

@@ -23,7 +23,7 @@ index_dialog = Dialog(
             SwitchTo(id="btn_help", text=Const("📃❓ Help"), state=MainSG.help),
             SwitchTo(id="btn_settings", text=Const("⚙️ Settings"), state=MainSG.settings),
         ),
-        Start(id="btn_goto_admin_index", text=Const("Admin panel"), state=AdminSG.index, when="is_admin"),            
+        Start(id="btn_goto_admin_index", text=Const("Admin panel"), state=AdminSG.index, when="is_admin"),
         getter=main_getter,
         state=MainSG.main
     ),

@@ -1,4 +1,4 @@
-from aiogram import Dispatcher, Router
+`from aiogram import Dispatcher, Router
 from aiogram_dialog import Dialog
 from urllib.parse import quote
 from loguru import logger
@@ -12,7 +12,7 @@ class InterceptHandler(logging.Handler):
     def emit(self, record: logging.LogRecord) -> None:
         logger_opt = logger.opt(depth=6, exception=record.exc_info)
         logger_opt.log(record.levelname, record.getMessage())
-        
+
 def is_admin(id: int) -> bool:
     """
     check is user is admin by it's id
@@ -27,7 +27,7 @@ def add_admin(id: int) -> None:
     """
     _user: Query = Query()
     users.upsert({'is_admin': True, 'id': id}, _user.id == id)
-    
+
 def get_admins() -> list[dict]:
     """
     get all users
