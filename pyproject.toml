@@ -1,68 +1,65 @@
+[build-system]
+build-backend = "poetry.core.masonry.api"
+requires = ["poetry-core"]
+
+[tool.mypy]
+plugins = [
+  "tinydb.mypy_plugin",
+  "pydantic.mypy"
+]
+
 [tool.poetry]
-name = "business-card"
-version = "0.1.0"
-description = ""
 authors = ["scary <scary@scary.com>"]
-readme = "README.md"
+description = ""
+name = "business-card"
 packages = [{include = "business_card"}]
+readme = "README.md"
+version = "0.1.0"
 
 [tool.poetry.dependencies]
-python = "^3.11"
-loguru = "^0.7.0"
-aiogram-dialog = "2.0.0b18"
 aiogram = "3.0.0b7"
-redis = "^4.5.5"
+aiogram-dialog = "2.0.0b18"
 deep-translator = "^1.11.1"
 environ-config = "^23.2.0"
+loguru = "^0.7.0"
+python = "^3.11"
 python-dotenv = "^1.0.0"
+redis = "^4.5.5"
 tinydb = "^4.8.0"
 
 [tool.poetry.group.dev.dependencies]
-ruff = "*"
+black = "^23.3.0"
 mypy = "*"
 pre-commit = "^3.3.3"
-black = "^23.3.0"
-
-[build-system]
-requires = ["poetry-core"]
-build-backend = "poetry.core.masonry.api"
+ruff = "*"
 
 [tool.ruff]
 ignore = [
-    "F401", # unused-import
-    "E501", # line-too-long
-    "E712", # true-false-comparison
-    "ANN101", # missing-type-self
-    ]
-select = [
-    "E", # Pyflakes
-    "F", # pycodestyle
-    "W", # pycodestyle
-    "C90", # mccabe
-    "I", # isort
-    "N",
-    "UP",
-    "ANN"
+  "F401",  # unused-import
+  "E501",  # line-too-long
+  "E712",  # true-false-comparison
+  "ANN101"  # missing-type-self
 ]
+select = [
+  "E",  # Pyflakes
+  "F",  # pycodestyle
+  "W",  # pycodestyle
+  "C90",  # mccabe
+  "I",  # isort
+  "N",
+  "UP",
+  "ANN"
+]
+
+[tool.ruff.flake8-annotations]
+# Whether to allow the omission of a return type hint for __init__ if at least one argument is annotated.
+allow-star-arg-any = true
+mypy-init-return = true
+# Whether to suppress ANN401 for dynamically typed *args and **kwargs arguments.
+suppress-none-returning = true
 
 [tool.ruff.flake8-type-checking]
 strict = true
 
-[tool.ruff.flake8-annotations]
-mypy-init-return = true
-# Whether to allow the omission of a return type hint for __init__ if at least one argument is annotated.
-allow-star-arg-any = true
-# Whether to suppress ANN401 for dynamically typed *args and **kwargs arguments.
-suppress-none-returning = true
-# Whether to suppress ANN200-level violations for functions that meet either of the following criteria:
-# - Contain no return statement.
-# - Explicit return statement(s) all return None (explicitly or implicitly).
-
 [tool.ruff.pydocstyle]
 convention = "google"
-
-[tool.mypy]
-plugins = [
-    "tinydb.mypy_plugin",
-    "pydantic.mypy",
-]
