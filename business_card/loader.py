@@ -1,3 +1,7 @@
+"""
+This file contain all global objects for bit,
+to avoid circular imports.
+"""
 from aiogram import Bot, Dispatcher
 from aiogram.fsm.storage.base import BaseStorage
 from loguru import logger

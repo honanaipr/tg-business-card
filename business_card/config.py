@@ -1,3 +1,7 @@
+"""
+This file contain validation template for
+bot's configuratin, given from environ.
+"""
 from traceback import print_exception
 
 import environ
