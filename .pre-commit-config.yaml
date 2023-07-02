@@ -17,6 +17,11 @@ repos:
   - id: pretty-format-toml
     args: [--autofix]
 
+# - repo: https://github.com/streetsidesoftware/cspell-cli
+#   rev: v6.31.0
+#   hooks:
+#   - id: cspell
+
 - repo: local
   hooks:
   - id: black

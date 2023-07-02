@@ -56,3 +56,5 @@ pip install poetry
 ```sh
 set -o allexport && source .env && set +o allexport
 ```
+# TODO development
+# https://black.readthedocs.io/en/stable/contributing/the_basics.html#technicalities

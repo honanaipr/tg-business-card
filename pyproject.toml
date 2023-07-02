@@ -2,6 +2,9 @@
 build-backend = "poetry.core.masonry.api"
 requires = ["poetry-core"]
 
+[tool.black]
+target-version = ['py39']
+
 [tool.mypy]
 plugins = [
   "tinydb.mypy_plugin",
@@ -33,6 +36,9 @@ mypy = "*"
 pre-commit = "^3.3.3"
 ruff = "*"
 
+[tool.poetry.scripts]
+start = 'business_card.start:start'
+
 [tool.ruff]
 ignore = [
   "F401",  # unused-import
@@ -47,8 +53,8 @@ select = [
   "C90",  # mccabe
   "I",  # isort
   "N",
-  "UP",
-  "ANN"
+  "UP",  # ?
+  "ANN"  # ?
 ]
 
 [tool.ruff.flake8-annotations]
