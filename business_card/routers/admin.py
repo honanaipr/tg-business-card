@@ -16,8 +16,8 @@ from aiogram_dialog import DialogManager, StartMode
 from loguru import logger
 
 from business_card import utils
-from business_card.dialogs.admin import AdminSG
 from business_card.loader import bot
+from business_card.states import AdminSG
 
 admin_router = Router()
 

@@ -22,3 +22,10 @@ class SecondarySG(StatesGroup):
 
 class TgServiceSG(StatesGroup):
     main = State()
+
+
+class AdminSG(StatesGroup):
+    index = State()
+    add_admin = State()
+    confirm_add_admin = State()
+    admin_added = State()

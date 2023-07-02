@@ -23,15 +23,8 @@ from aiogram_dialog.widgets.media import Media, StaticMedia
 from aiogram_dialog.widgets.text import Const, Format, Multi
 
 from business_card.dialogs.windows.confirm import ConfirmWindow
-from business_card.states import MainSG, TranslateSG
+from business_card.states import AdminSG, MainSG, TranslateSG
 from business_card.utils import add_admin, get_placeholder_image_url, is_admin
-
-
-class AdminSG(StatesGroup):
-    index = State()
-    add_admin = State()
-    confirm_add_admin = State()
-    admin_added = State()
 
 
 async def name_handler(
