@@ -1,10 +1,34 @@
-from pathlib import Path
+from datetime import date
 
-from tinydb import Query, TinyDB
-from tinydb.table import Table
+from peewee import (
+    BigIntegerField,
+    BooleanField,
+    CharField,
+    DateField,
+    ForeignKeyField,
+    Model,
+    SqliteDatabase,
+)
 
-from business_card.config import config
+db = SqliteDatabase("people.sqlite3")
 
-db = TinyDB(Path.cwd() / "db.json", indent=1)
-cache_size = 0 if config.debug else Table.default_query_cache_capacity
-users = db.table("users", cache_size=cache_size)
+
+class Base(Model):
+    def to_dict(self) -> dict:
+        return self.__dict__["__data__"]
+
+    class Meta:
+        database = db
+
+
+class User(Base):
+    id = BigIntegerField(primary_key=True)
+    name = CharField()
+    is_admin = BooleanField(default=False)
+
+    class Meta:
+        table_name = "users"
+
+
+with db:
+    db.create_tables([User])

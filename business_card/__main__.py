@@ -7,7 +7,7 @@ from aiogram.types import Message
 from aiogram_dialog import DialogManager, StartMode, setup_dialogs
 from aiogram_dialog.manager.manager import ManagerImpl
 
-from business_card.db import Query, users
+from business_card.db import User
 from business_card.dialogs import admin_dialog, index_dialog, translate_dialog
 from business_card.loader import bot, dp
 from business_card.routers.admin import admin_router
@@ -24,36 +24,29 @@ dp.include_router(translate_dialog)
 dp.include_router(admin_dialog)
 setup_dialogs(dp)
 
-_user = Query()
-has_admins = users.contains(_user.is_admin == True)  # to skip db request if not needed
-del _user
+has_admins = User.select().where(User.is_admin == True).exists()
 
 
 @dp.message(Command("start"))
 async def start_command(message: Message, dialog_manager: DialogManager):
-    _user = Query()
     global has_admins
     if not message.from_user:
         return
-    user = users.get(_user.id == message.from_user.id)
+    user = User.get_or_none(User.id == message.from_user.id)
     if not user:
-        if not has_admins or not users.contains(_user.is_admin == True):
+        if not has_admins or not User.select().where(User.is_admin == True).exists():
             # have no users yet
             has_admins = True
-            user = {  # type: ignore
-                "is_admin": True,
-                "id": message.from_user.id,
-                "name": message.from_user.full_name,
-            }
-            users.insert(user)  # type: ignore
+            User.create(
+                id=message.from_user.id, name=message.from_user.full_name, is_admin=True
+            )
             await message.answer("You are first user of this bot. Make you an admin!!!")
         else:
-            user = {  # type: ignore
-                "is_admin": False,
-                "id": message.from_user.id,
-                "name": message.from_user.full_name,
-            }
-            users.insert(user)  # type: ignore
+            User.create(
+                id=message.from_user.id,
+                name=message.from_user.full_name,
+                is_admin=False,
+            )
     await dialog_manager.start(MainSG.main, mode=StartMode.RESET_STACK)
 
 

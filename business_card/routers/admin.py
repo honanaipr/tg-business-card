@@ -16,6 +16,7 @@ from aiogram_dialog import DialogManager, StartMode
 from loguru import logger
 
 from business_card import utils
+from business_card.exceptions import DBError
 from business_card.loader import bot
 from business_card.states import AdminSG
 
@@ -29,13 +30,17 @@ async def command_start_handler(message: Message, command: CommandObject):
     if not utils.is_admin(message.from_user.id):
         logger.warning("Someone non admin try to use " + (message.text or ""))
         return
+    try:
+        users = utils.get_users()
+    except DBError as e:
+        logger.exception(e)
     if not command.args:
         answer = "\n".join(
             [
-                "Name: " + str(document["name"]) + "\n"
-                "Id: " + str(document["id"]) + "\n"
-                "Is admin: " + str(document["is_admin"]) + "\n\n"
-                for document in utils.get_admins()
+                "Name: " + str(user.name) + "\n"
+                "Id: " + str(user.id) + "\n"
+                "Is admin: " + str(user.is_admin) + "\n\n"
+                for user in users
             ]
         )
         await message.answer(answer)
