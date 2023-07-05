@@ -1,0 +1,9 @@
+{
+    "connections": {"default": "sqlite://db.sqlite3"},
+    "apps": {
+        "models": {
+            "models": ["business_card.models", "aerich.models"],
+            "default_connection": "default"
+        }
+    }
+}

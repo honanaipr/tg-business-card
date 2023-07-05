@@ -7,7 +7,7 @@ from aiogram.types import Message
 from aiogram_dialog import DialogManager, StartMode, setup_dialogs
 from aiogram_dialog.manager.manager import ManagerImpl
 
-from business_card.db import User
+from business_card.db import User, init_db
 from business_card.dialogs import admin_dialog, index_dialog, translate_dialog
 from business_card.loader import bot, dp
 from business_card.routers.admin import admin_router
@@ -24,7 +24,12 @@ dp.include_router(translate_dialog)
 dp.include_router(admin_dialog)
 setup_dialogs(dp)
 
-has_admins = User.select().where(User.is_admin == True).exists()
+has_admins = True
+
+
+async def init_has_admins():
+    global has_admins
+    has_admins = await User.filter(is_admin=True).exists()
 
 
 @dp.message(Command("start"))
@@ -32,17 +37,17 @@ async def start_command(message: Message, dialog_manager: DialogManager):
     global has_admins
     if not message.from_user:
         return
-    user = User.get_or_none(User.id == message.from_user.id)
+    user = await User.get_or_none(id=message.from_user.id)
     if not user:
-        if not has_admins or not User.select().where(User.is_admin == True).exists():
+        if not has_admins or not User.filter(is_admin=True).exists():
             # have no users yet
             has_admins = True
-            User.create(
+            await User.create(
                 id=message.from_user.id, name=message.from_user.full_name, is_admin=True
             )
             await message.answer("You are first user of this bot. Make you an admin!!!")
         else:
-            User.create(
+            await User.create(
                 id=message.from_user.id,
                 name=message.from_user.full_name,
                 is_admin=False,
@@ -73,6 +78,8 @@ async def help_dialog(message: Message, dialog_manager: DialogManager):
 
 
 dp.include_router(translation_router)
+dp.startup.register(init_db)
+dp.startup.register(init_has_admins)
 
 
 async def main():

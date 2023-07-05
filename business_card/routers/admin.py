@@ -27,21 +27,24 @@ admin_router = Router()
 async def command_start_handler(message: Message, command: CommandObject):
     if not message.from_user:
         return
-    if not utils.is_admin(message.from_user.id):
+    if not await utils.is_admin(message.from_user.id):
         logger.warning("Someone non admin try to use " + (message.text or ""))
         return
     try:
-        users = utils.get_users()
+        users = await utils.get_users()
     except DBError as e:
         logger.exception(e)
     if not command.args:
-        answer = "\n".join(
-            [
-                "Name: " + str(user.name) + "\n"
-                "Id: " + str(user.id) + "\n"
-                "Is admin: " + str(user.is_admin) + "\n\n"
-                for user in users
-            ]
+        answer = (
+            "\n".join(
+                [
+                    "Name: " + str(user.name) + "\n"
+                    "Id: " + str(user.id) + "\n"
+                    "Is admin: " + str(user.is_admin) + "\n\n"
+                    for user in users
+                ]
+            )
+            or "No users yet"
         )
         await message.answer(answer)
     else:

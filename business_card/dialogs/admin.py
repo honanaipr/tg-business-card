@@ -49,7 +49,7 @@ async def on_add_admin(c: CallbackQuery, button: Button, manager: DialogManager)
         return
     message = "Администратор добавлен"
     try:
-        add_admin(User(**manager.dialog_data["user"]))
+        await add_admin(User(**manager.dialog_data["user"]))
     except DBError as e:
         logger.exception(e)
         message = "Не удалось добавить администратора"

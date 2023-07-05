@@ -1,34 +1,12 @@
-from datetime import date
+import asyncio
 
-from peewee import (
-    BigIntegerField,
-    BooleanField,
-    CharField,
-    DateField,
-    ForeignKeyField,
-    Model,
-    SqliteDatabase,
-)
+from tortoise import Tortoise, run_async
 
-db = SqliteDatabase("people.sqlite3")
+from business_card.models import User
 
 
-class Base(Model):
-    def to_dict(self) -> dict:
-        return self.__dict__["__data__"]
-
-    class Meta:
-        database = db
-
-
-class User(Base):
-    id = BigIntegerField(primary_key=True)
-    name = CharField()
-    is_admin = BooleanField(default=False)
-
-    class Meta:
-        table_name = "users"
-
-
-with db:
-    db.create_tables([User])
+async def init_db() -> None:
+    await Tortoise.init(
+        config_file="business_card/tortoise_config.json",
+    )
+    await Tortoise.generate_schemas()

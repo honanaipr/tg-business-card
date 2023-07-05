@@ -29,9 +29,12 @@ python = "^3.11"
 python-dotenv = "^1.0.0"
 redis = "^4.5.5"
 tinydb = "^4.8.0"
+tortoise-orm = "^0.19.3"
 
 [tool.poetry.group.dev.dependencies]
+aerich = "^0.7.1"
 black = "^23.3.0"
+ipython = "^8.14.0"
 mypy = "*"
 pre-commit = "^3.3.3"
 ruff = "*"
@@ -54,7 +57,8 @@ select = [
   "I",  # isort
   "N",
   "UP",  # ?
-  "ANN"  # ?
+  "ANN",  # ?
+  "TCH"
 ]
 
 [tool.ruff.flake8-annotations]
