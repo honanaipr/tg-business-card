@@ -7,7 +7,6 @@ target-version = ['py39']
 
 [tool.mypy]
 plugins = [
-  "tinydb.mypy_plugin",
   "pydantic.mypy"
 ]
 
@@ -25,10 +24,12 @@ aiogram-dialog = "2.0.0b18"
 deep-translator = "^1.11.1"
 environ-config = "^23.2.0"
 loguru = "^0.7.0"
+peewee = "^3.16.2"
 python = "^3.11"
 python-dotenv = "^1.0.0"
 redis = "^4.5.5"
 tinydb = "^4.8.0"
+types-peewee = "^3.16.0.1"
 
 [tool.poetry.group.dev.dependencies]
 black = "^23.3.0"
